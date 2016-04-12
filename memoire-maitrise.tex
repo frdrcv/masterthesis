@@ -1,0 +1,274 @@
+%!TEX program = xelatex
+%% GABARIT POUR MÉMOIRE STANDARD
+%%
+%% Consulter la documentation de la classe ulthese pour une
+%% description détaillée de la classe, de ce gabarit et des options
+%% disponibles.
+%%
+%% [Ne pas hésiter à supprimer les commentaires après les avoir lus.]
+%%
+%% Déclaration de la classe avec le type de grade
+%%   [l'un de MSc, LLM, MA, MMus, MServSoc, MScGeogr, MATDR]
+%% et les langues les plus courantes. Le français sera la langue par
+%% défaut du document.
+\documentclass[MScGeogr,english,francais,nobabel,nonatbib,12pt]{ulthese}
+  %% Encodage utilisé pour les caractères accentués dans les fichiers
+  %% source du document. Les gabarits sont encodés en UTF-8. Inutile avec
+  %% XeLaTeX, qui gère Unicode nativement.
+  \ifxetex\else \usepackage[utf8]{inputenc} \fi
+
+
+  %% Charger ici les autres paquetages nécessaires pour le document.
+  %% Quelques exemples; décommenter au besoin.
+  %\usepackage{amsmath}          % recommandé pour les mathématiques
+  %\usepackage{icomma}           % gestion de la virgule dans les nombres
+
+  %% Utilisation d'une autre police de caractères pour le document.
+  %% - Sous LaTeX
+  %\usepackage{mathpazo}         % texte et mathématiques en Palatino
+  %\usepackage{mathptmx}         % texte et mathématiques en Times
+  %% - Sous XeLaTeX
+  \setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
+  %\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
+  %\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
+  %\setmathfont{TeX Gyre Termes Math}  % mathématiques en Termes (Times)
+
+  %% Gestion des hyperliens dans le document. S'assurer que hyperref
+  %% est le dernier paquetage chargé.
+  \usepackage{hyperref}
+  \hypersetup{colorlinks,allcolors=ULlinkcolor}
+
+  %% Options de mise en forme du mode français de babel. Consulter la
+  %% documentation du paquetage babel pour les options disponibles.
+  %% Désactiver (effacer ou mettre en commentaire) si l'option
+  %% 'nobabel' est spécifiée au chargement de la classe.
+  %\frenchbsetup{%
+  %  CompactItemize=false,         % ne pas compacter les listes
+  %  ThinSpaceInFrenchNumbers=true % espace fine dans les nombres
+  %}
+
+  %% Style de la bibliographie.
+  %\bibliographystyle{}
+
+% \usepackage{fontspec}
+% \usepackage{tgpagella}% Latin Modern typeface (font)
+% \setmainfont{TeX Gyre Pagella}
+% \setmainfont{EBGaramond12-Regular}
+% \usepackage{ebgaramond}
+% \setmainfont[Ligatures=TeX]{EB Garamond}
+% \setmainfont{texgyrepagella}
+
+\usepackage{xunicode} % Pour l'encodage UTF-8
+\usepackage{polyglossia} % Équivalent de Babel
+\usepackage[]{csquotes}
+%\MakeBlockQuote{<}{|}{>}
+\setdefaultlanguage{french} % Set default language for the Polyglossia package
+
+%\usepackage{natbib}
+% Start of 'ignore natbib' hack
+%\let\bibhang\relax
+%\let\citename\relax
+%\let\bibfont\relax
+%\let\citeauthor\relax
+%\let\Citeauthor\relax
+%\let\citeyear\relax
+%\expandafter\let\csname ver@natbib.sty\endcsname\relax
+% End of 'ignore natbib' hack
+
+
+\usepackage[style=authoryear,sortcites,backend=biber,maxbibnames=99,natbib=true]{biblatex}
+\setcounter{biburlnumpenalty}{100}
+\addbibresource{~/Dropbox/bibliographie/literature_repository/library.bib} % Name of the file (without the .bib extension) to use as source for bibliography references
+%\DeclareFieldFormat{url}{\space\url{#1}}
+%\DeclareFieldFormat{urldate}{\addcomma\space\bibstring{urlseen}\space#1}
+%\setcounter{biburlnumpenalty}{100} % Permet une brisure dans les DOI
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \pertype{article}
+       \step[fieldset=issn, null]
+       \step[fieldset=url, null]
+    }
+    \map{
+      \pertype{collection}
+       \step[fieldset=url, null]
+    }
+    \map{
+      \pertype{book}
+       \step[fieldset=url, null]
+       \step[fieldset=doi, null]
+    }
+    \map{
+      \pertype{online}
+%       \step[fieldset=url, null]
+       \step[fieldset=doi, null]
+    }
+    \map{
+      \step[fieldset=language, null]
+    }
+  }
+}
+
+
+\DefineBibliographyStrings{french}{
+  urlseen = {visité le},
+  in = {},
+  mathesis = {Mém. de maît.}
+}
+
+%\defbibfilter{ressources}{ % Créer une catégorie bibliographique pour "outils" (permet d'exclure)
+  %type=manual or
+  %type=online
+%}
+
+  %% Déclarations de la page titre. Remplacer les éléments entre < >.
+  %% Supprimer les caractères < >. Couper un long titre ou un long
+  %% sous-titre manuellement avec \\.
+  \titre{Au-delà du territoire}
+  % \titre{Ceci est un exemple de long titre \\
+  %   avec saut de ligne manuel}
+  \soustitre{Espaces et géosymboles de la diversité sexuelle}
+  % \soustitre{Ceci est un exemple de long sous-titre \\
+  %   avec saut de ligne manuel}
+  \auteur{Frédéric Vachon}
+  \programme{Maîtrise en Sciences géographiques}
+  \annee{2016}
+
+
+%% Ajouts personnels -----------------------------------------
+% Siècles 
+
+\def\siecle#1{\textsc{\romannumeral #1}\textsuperscript{e}~siècle}
+\def\anglais#1{\textit{#1}}
+\def\latin#1{\textit{#1}}
+\def\code#1{\texttt{#1}}
+%--------
+
+% Macros (surtout des acronymes)
+\newcommand\agq{\gls{agq}\xspace}
+\newcommand\bdsm{\gls{bdsm}\xspace}
+\newcommand\atq{\gls{atq}\xspace}
+\newcommand\astteq{\gls{astteq}\xspace}
+\newcommand\cadqas{\gls{cadqas}\xspace}
+\newcommand\ggul{\gls{ggul}\xspace}
+\newcommand\gps{\gls{gps}\xspace}
+\newcommand\lgbt{\gls{lgbtq}\xspace}
+\newcommand\mtl{Montréal\xspace}
+\newcommand\qc{Québec\xspace}
+\newcommand\dyke{\emph{dyke}\xspace}
+\newcommand\dykes{\emph{dykes}\xspace}
+\newcommand\Dyke{\emph{Dyke}\xspace}
+\newcommand\Dykes{\emph{Dykes}\xspace}
+\newcommand\dm{\emph{Dyke March} de Montréal\xspace}
+\newcommand\qu{\emph{queer}\xspace}
+\newcommand\qus{\emph{queers}\xspace}
+\newcommand\rlq{\gls{rlq}\xspace}
+\newcommand\rqda{\gls{rqda}\xspace}
+\newcommand\sida{\gls{sida}\xspace}
+\newcommand\sig{\gls{sig}\xspace}
+\newcommand\vih{\gls{vih}\xspace}
+\newcommand\uqam{\gls{uqam}\xspace}
+\newcommand\uqar{\gls{uqar}\xspace}
+\renewcommand{\arraystretch}{1.5}
+
+% Note importante, en rouge
+\newcommand{\note}[1]{\color{red}(#1!)\color{black}}
+% Besoin d'une référence
+\newcommand{\missref}{\note{[REF]}}
+% À faire
+\newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}}
+\usepackage{xspace}
+
+
+%--------
+
+% Pour l'interligne
+\usepackage{setspace} 
+%--------
+
+% Gestion des acronymes
+%\usepackage{acronym}
+\usepackage{silence}
+\WarningFilter{glossaries}{Overriding \printglossary}
+\WarningFilter{glossaries}{overriding `theglossary'}
+\usepackage[acronym,xindy,toc,smallcaps,nomain,nonumberlist]{glossaries}
+\usepackage{enumitem}
+\renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
+\makeglossaries
+\input{acronymes}
+%--------
+
+% Définir un dossier par défaut pour les images
+\graphicspath{{images/}}
+%-----------------------------------------
+
+
+%\usepackage{float}
+%\usepackage[caption = false]{subfig}
+\usepackage{subcaption}
+
+% Cases à cocher
+\usepackage{wasysym}
+
+\usepackage{longtable}
+
+
+
+
+\begin{document}
+
+
+\frontmatter                    % pages liminaires
+
+\pagetitre                      % production de la page titre
+
+\include{resume}                % résumé français
+\include{abstract}              % résumé anglais
+\cleardoublepage
+
+\tableofcontents                % production de la TdM
+\cleardoublepage
+
+\listoftables                   % production de la liste des tableaux
+\cleardoublepage
+
+\listoffigures                  % production de la liste des figures
+\cleardoublepage
+
+\printglossary[type=\acronymtype,title=Liste des acronymes,toctitle=Liste des acronymes] % production de la liste des acronymes
+\cleardoublepage
+
+\dedicace{Dédicace si désiré}
+\cleardoublepage
+
+\epigraphe{Texte de l'épigraphe}{Source ou auteur}
+\cleardoublepage
+
+\include{remerciements}         % remerciements
+\include{avantpropos}           % avant-propos
+
+\mainmatter                     % corps du document
+
+
+\include{introduction}          % introduction
+\include{chapitres/chapitre1/chapitre1}             % chapitre 1
+\include{chapitres/chapitre2/chapitre2}             % chapitre 2, etc.
+\include{chapitres/chapitre3/chapitre3}             % chapitre 2, etc.
+\include{chapitres/chapitre4/chapitre4}             % chapitre 2, etc.
+\include{chapitres/chapitre5/chapitre5}             % chapitre 2, etc.
+\include{conclusion}            % conclusion
+
+
+
+%\bibliography{}                 % production de la bibliographie
+%\printbibliography[nottype=manual,nottype=online]
+%\printbibliography[type=manual,type=online,sorting=nyt]
+\printbibliography[sorting=nyt]
+
+
+\appendix                       % annexes le cas échéant
+
+\include{annexe}                % annexe A
+
+
+\end{document}
