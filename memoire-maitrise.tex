@@ -11,7 +11,7 @@
 %%   [l'un de MSc, LLM, MA, MMus, MServSoc, MScGeogr, MATDR]
 %% et les langues les plus courantes. Le français sera la langue par
 %% défaut du document.
-\documentclass[MScGeogr,english,francais,nobabel,nonatbib,12pt]{ulthese}
+\documentclass[MScGeogr,nobabel,nonatbib,12pt]{ulthese}
   %% Encodage utilisé pour les caractères accentués dans les fichiers
   %% source du document. Les gabarits sont encodés en UTF-8. Inutile avec
   %% XeLaTeX, qui gère Unicode nativement.
@@ -63,6 +63,7 @@
 \usepackage[]{csquotes}
 %\MakeBlockQuote{<}{|}{>}
 \setdefaultlanguage{french} % Set default language for the Polyglossia package
+\setotherlanguage{english}
 
 %\usepackage{natbib}
 % Start of 'ignore natbib' hack
@@ -160,6 +161,7 @@
 \newcommand\Dyke{\emph{Dyke}\xspace}
 \newcommand\Dykes{\emph{Dykes}\xspace}
 \newcommand\dm{\emph{Dyke March} de Montréal\xspace}
+\newcommand\mai{\emph{mai}\xspace}
 \newcommand\qu{\emph{queer}\xspace}
 \newcommand\qus{\emph{queers}\xspace}
 \newcommand\rlq{\gls{rlq}\xspace}
