@@ -137,13 +137,12 @@
 
 
 %% Ajouts personnels -----------------------------------------
-% Siècles 
 
+% Siècles 
 \def\siecle#1{\textsc{\romannumeral #1}\textsuperscript{e}~siècle}
 \def\anglais#1{\textit{#1}}
 \def\latin#1{\textit{#1}}
 \def\code#1{\texttt{#1}}
-%--------
 
 % Macros (surtout des acronymes)
 \newcommand\agq{\gls{agq}\xspace}
@@ -178,20 +177,13 @@
 \newcommand\sortie{\emph{Sortie}\xspace}
 \renewcommand{\arraystretch}{1.5}
 
-% Note importante, en rouge
-\newcommand{\note}[1]{\color{red}(#1!)\color{black}}
-% Besoin d'une référence
-\newcommand{\missref}{\note{[REF]}}
-% À faire
-\newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}}
-\usepackage{xspace}
-
-
-%--------
+% Annotations
+\newcommand{\note}[1]{\color{red}(#1!)\color{black}} % Note importante, en rouge
+\newcommand{\missref}{\note{[REF]}} % Besoin d'une référence
+\newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}} % À faire
 
 % Pour l'interligne
 \usepackage{setspace} 
-%--------
 
 % Gestion des acronymes
 %\usepackage{acronym}
@@ -200,15 +192,13 @@
 \WarningFilter{glossaries}{overriding `theglossary'}
 \usepackage[acronym,xindy,sort=def,toc,smallcaps,nomain,nonumberlist]{glossaries}
 \usepackage{enumitem}
+\usepackage{xspace}
 \renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
 \makeglossaries
 \input{acronymes}
-%--------
 
 % Définir un dossier par défaut pour les images
 \graphicspath{{images/}}
-%-----------------------------------------
-
 
 %\usepackage{float}
 %\usepackage[caption = false]{subfig}
@@ -217,13 +207,10 @@
 % Cases à cocher
 \usepackage{wasysym}
 
+% Tableaux longs
 \usepackage{longtable}
 
-
-
-
 \begin{document}
-
 
 \frontmatter                    % pages liminaires
 
