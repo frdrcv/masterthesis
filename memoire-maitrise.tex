@@ -4,18 +4,6 @@
   %% source du document. Les gabarits sont encodés en UTF-8. Inutile avec
   %% XeLaTeX, qui gère Unicode nativement.
   \ifxetex\else \usepackage[utf8]{inputenc} \fi
-
-
-  %% Charger ici les autres paquetages nécessaires pour le document.
-  %% Quelques exemples; décommenter au besoin.
-  %\usepackage{amsmath}          % recommandé pour les mathématiques
-  %\usepackage{icomma}           % gestion de la virgule dans les nombres
-
-  %% Utilisation d'une autre police de caractères pour le document.
-  %% - Sous LaTeX
-  %\usepackage{mathpazo}         % texte et mathématiques en Palatino
-  %\usepackage{mathptmx}         % texte et mathématiques en Times
-  %% - Sous XeLaTeX
   \setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
   %\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
   %\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
@@ -201,56 +189,38 @@
 \begin{document}
 
 \frontmatter                    % pages liminaires
-
 \pagetitre                      % production de la page titre
-
 \include{resume}                % résumé français
 \include{abstract}              % résumé anglais
 \cleardoublepage
-
 \tableofcontents                % production de la TdM
 \cleardoublepage
-
 \listoftables                   % production de la liste des tableaux
 \cleardoublepage
-
 \listoffigures                  % production de la liste des figures
 \cleardoublepage
-
 \printglossary[type=\acronymtype,title=Liste des acronymes,toctitle=Liste des acronymes] % production de la liste des acronymes
 \cleardoublepage
-
 \dedicace{Dédicace si désiré}
 \cleardoublepage
-
 \epigraphe{Texte de l'épigraphe}{Source ou auteur}
 \cleardoublepage
-
 \include{remerciements}         % remerciements
 \include{avantpropos}           % avant-propos
 
 \mainmatter                     % corps du document
-
-
-\include{introduction}          % introduction
-\include{chapitres/chapitre1/chapitre1}             % chapitre 1
-\include{chapitres/chapitre2/chapitre2}             % chapitre 2, etc.
-\include{chapitres/chapitre3/chapitre3}             % chapitre 2, etc.
-\include{chapitres/chapitre4/chapitre4}             % chapitre 2, etc.
-\include{chapitres/chapitre5/chapitre5}             % chapitre 2, etc.
-\include{conclusion}            % conclusion
-
+\include{introduction}
+\include{chapitres/chapitre1/chapitre1}
+\include{chapitres/chapitre2/chapitre2}
+\include{chapitres/chapitre3/chapitre3}
+\include{chapitres/chapitre4/chapitre4}
+\include{chapitres/chapitre5/chapitre5}
+\include{conclusion}
 
 %\bibliography{}                 % production de la bibliographie
 %\printbibliography[nottype=manual,nottype=online]
 %\printbibliography[type=manual,type=online,sorting=nyt]
 \printbibliography%[sorting=nyt]
-
-
-
 \appendix                       % annexes le cas échéant
-
 \include{annexe}                % annexe A
-
-
 \end{document}
