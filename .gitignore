@@ -42,4 +42,4 @@
 *.ins*
 make
 *.synctex.gz
-*.sw
+*.*.swp
