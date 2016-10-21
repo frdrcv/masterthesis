@@ -4,43 +4,12 @@
   %% source du document. Les gabarits sont encodés en UTF-8. Inutile avec
   %% XeLaTeX, qui gère Unicode nativement.
   \ifxetex\else \usepackage[utf8]{inputenc} \fi
-  \setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
-  %\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
-  %\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
-  %\setmathfont{TeX Gyre Termes Math}  % mathématiques en Termes (Times)
-
-  %% Gestion des hyperliens dans le document. S'assurer que hyperref
-  %% est le dernier paquetage chargé.
-  \usepackage{hyperref}
-  \hypersetup{colorlinks,allcolors=ULlinkcolor}
-
-  %% Options de mise en forme du mode français de babel. Consulter la
-  %% documentation du paquetage babel pour les options disponibles.
-  %% Désactiver (effacer ou mettre en commentaire) si l'option
-  %% 'nobabel' est spécifiée au chargement de la classe.
-  %\frenchbsetup{%
-  %  CompactItemize=false,         % ne pas compacter les listes
-  %  ThinSpaceInFrenchNumbers=true % espace fine dans les nombres
-  %}
-
-  %% Style de la bibliographie.
-  %\bibliographystyle{}
-
-% \usepackage{fontspec}
-% \usepackage{tgpagella}% Latin Modern typeface (font)
-% \setmainfont{TeX Gyre Pagella}
-% \setmainfont{EBGaramond12-Regular}
-% \usepackage{ebgaramond}
-% \setmainfont[Ligatures=TeX]{EB Garamond}
-% \setmainfont{texgyrepagella}
 
 \usepackage{xunicode} % Pour l'encodage UTF-8
 \usepackage{polyglossia} % Équivalent de Babel
 \usepackage[]{csquotes}
-%\MakeBlockQuote{<}{|}{>}
 \setdefaultlanguage{french} % Set default language for the Polyglossia package
 \setotherlanguage{english}
-
 %\usepackage{natbib}
 % Start of 'ignore natbib' hack
 %\let\bibhang\relax
@@ -51,68 +20,7 @@
 %\let\citeyear\relax
 %\expandafter\let\csname ver@natbib.sty\endcsname\relax
 % End of 'ignore natbib' hack
-
-
 \usepackage[style=authoryear,sortcites,backend=biber,maxbibnames=99,natbib=true]{biblatex}
-\setcounter{biburlnumpenalty}{100}
-\addbibresource{~/Dropbox/bibliographie/literature_repository/library.bib} % Name of the file (without the .bib extension) to use as source for bibliography references
-%\DeclareFieldFormat{url}{\space\url{#1}}
-%\DeclareFieldFormat{urldate}{\addcomma\space\bibstring{urlseen}\space#1}
-%\setcounter{biburlnumpenalty}{100} % Permet une brisure dans les DOI
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
-      \pertype{article}
-       \step[fieldset=issn, null]
-       \step[fieldset=url, null]
-    }
-    \map{
-      \pertype{collection}
-       \step[fieldset=url, null]
-    }
-    \map{
-      \pertype{book}
-       \step[fieldset=url, null]
-       \step[fieldset=doi, null]
-    }
-    \map{
-      \pertype{online}
-%       \step[fieldset=url, null]
-       \step[fieldset=doi, null]
-    }
-    \map{
-      \step[fieldset=language, null]
-    }
-  }
-}
-
-
-\DefineBibliographyStrings{french}{
-  urlseen = {visité le},
-  in = {},
-  mathesis = {Mém. de maît.}
-}
-
-%\defbibfilter{ressources}{ % Créer une catégorie bibliographique pour "outils" (permet d'exclure)
-  %type=manual or
-  %type=online
-%}
-
-  %% Déclarations de la page titre. Remplacer les éléments entre < >.
-  %% Supprimer les caractères < >. Couper un long titre ou un long
-  %% sous-titre manuellement avec \\.
-  \titre{Au-delà du territoire}
-  % \titre{Ceci est un exemple de long titre \\
-  %   avec saut de ligne manuel}
-  \soustitre{Espaces et géosymboles de la diversité sexuelle}
-  % \soustitre{Ceci est un exemple de long sous-titre \\
-  %   avec saut de ligne manuel}
-  \auteur{Frédéric Vachon}
-  \programme{Maîtrise en Sciences géographiques}
-  \annee{2016}
-
-
-%% Ajouts personnels -----------------------------------------
 
 % Siècles 
 \def\siecle#1{\textsc{\romannumeral #1}\textsuperscript{e}~siècle}
@@ -173,18 +81,89 @@
 \makeglossaries
 \input{acronymes}
 
-% Définir un dossier par défaut pour les images
-\graphicspath{{images/}}
-
+\graphicspath{{images/}} % Définir un dossier par défaut pour les images
 %\usepackage{float}
 %\usepackage[caption = false]{subfig}
-\usepackage{subcaption}
+\usepackage{subcaption} % Plus de legendes possibles
+\usepackage{wasysym} % Cases à cocher
+\usepackage{longtable} % Tableaux longs
 
-% Cases à cocher
-\usepackage{wasysym}
+  %% Utilisation d'une autre police de caractères pour le document.
+  \setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
+  %\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
+  %\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
+  %\setmathfont{TeX Gyre Termes Math}  % mathématiques en Termes (Times)
 
-% Tableaux longs
-\usepackage{longtable}
+  %% Gestion des hyperliens dans le document. S'assurer que hyperref
+  %% est le dernier paquetage chargé.
+  \usepackage{hyperref}
+  \hypersetup{colorlinks,allcolors=ULlinkcolor}
+
+  %% Options de mise en forme du mode français de babel. Consulter la
+  %% documentation du paquetage babel pour les options disponibles.
+  %% Désactiver (effacer ou mettre en commentaire) si l'option
+  %% 'nobabel' est spécifiée au chargement de la classe.
+  %\frenchbsetup{%
+  %  CompactItemize=false,         % ne pas compacter les listes
+  %  ThinSpaceInFrenchNumbers=true % espace fine dans les nombres
+  %}
+
+  %% Style de la bibliographie.
+  %\bibliographystyle{}
+\setcounter{biburlnumpenalty}{100}
+\addbibresource{~/Dropbox/bibliographie/literature_repository/library.bib} % Name of the file (without the .bib extension) to use as source for bibliography references
+%\DeclareFieldFormat{url}{\space\url{#1}}
+%\DeclareFieldFormat{urldate}{\addcomma\space\bibstring{urlseen}\space#1}
+%\setcounter{biburlnumpenalty}{100} % Permet une brisure dans les DOI
+\DeclareSourcemap{
+  \maps[datatype=bibtex]{
+    \map{
+      \pertype{article}
+       \step[fieldset=issn, null]
+       \step[fieldset=url, null]
+    }
+    \map{
+      \pertype{collection}
+       \step[fieldset=url, null]
+    }
+    \map{
+      \pertype{book}
+       \step[fieldset=url, null]
+       \step[fieldset=doi, null]
+    }
+    \map{
+      \pertype{online}
+%       \step[fieldset=url, null]
+       \step[fieldset=doi, null]
+    }
+    \map{
+      \step[fieldset=language, null]
+    }
+  }
+}
+\DefineBibliographyStrings{french}{
+  urlseen = {visité le},
+  in = {},
+  mathesis = {Mém. de maît.}
+}
+%\defbibfilter{ressources}{ % Créer une catégorie bibliographique pour "outils" (permet d'exclure)
+  %type=manual or
+  %type=online
+%}
+
+
+  %% Déclarations de la page titre. Remplacer les éléments entre < >.
+  %% Supprimer les caractères < >. Couper un long titre ou un long
+  %% sous-titre manuellement avec \\.
+  \titre{Au-delà du territoire}
+  % \titre{Ceci est un exemple de long titre \\
+  %   avec saut de ligne manuel}
+  \soustitre{Espaces et géosymboles de la diversité sexuelle}
+  % \soustitre{Ceci est un exemple de long sous-titre \\
+  %   avec saut de ligne manuel}
+  \auteur{Frédéric Vachon}
+  \programme{Maîtrise en Sciences géographiques}
+  \annee{2016}
 
 \begin{document}
 
