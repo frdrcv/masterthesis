@@ -28,6 +28,18 @@
 \def\latin#1{\textit{#1}}
 \def\code#1{\texttt{#1}}
 
+% Gestion des acronymes
+%\usepackage{acronym}
+\usepackage{silence}
+\WarningFilter{glossaries}{Overriding \printglossary}
+\WarningFilter{glossaries}{overriding `theglossary'}
+\usepackage[acronym,xindy,sort=def,toc,smallcaps,nomain,nonumberlist]{glossaries}
+\usepackage{enumitem}
+\usepackage{xspace}
+\renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
+\makeglossaries
+\input{acronymes}
+
 % Macros (surtout des acronymes)
 \newcommand\agq{\gls{agq}\xspace}
 \newcommand\alccva{\gls{alccva}\xspace}
@@ -69,18 +81,6 @@
 
 % Pour l'interligne
 \usepackage{setspace} 
-
-% Gestion des acronymes
-%\usepackage{acronym}
-\usepackage{silence}
-\WarningFilter{glossaries}{Overriding \printglossary}
-\WarningFilter{glossaries}{overriding `theglossary'}
-\usepackage[acronym,xindy,sort=def,toc,smallcaps,nomain,nonumberlist]{glossaries}
-\usepackage{enumitem}
-\usepackage{xspace}
-\renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
-\makeglossaries
-\input{acronymes}
 
 \graphicspath{{images/}} % Définir un dossier par défaut pour les images
 %\usepackage{float}
