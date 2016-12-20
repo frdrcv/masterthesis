@@ -23,7 +23,7 @@
 % End of 'ignore natbib' hack
 \usepackage[style=authoryear,sortcites,backend=biber,maxbibnames=99,natbib=true]{biblatex}
 
-% Siècles 
+% Siècles
 \def\siecle#1{\textsc{\romannumeral #1}\textsuperscript{e}~siècle}
 \def\anglais#1{\textit{#1}}
 \def\latin#1{\textit{#1}}
@@ -37,7 +37,7 @@
 \usepackage[acronym,xindy,sort=def,toc,smallcaps,nomain,nonumberlist]{glossaries}
 \usepackage{enumitem}
 \usepackage{xspace}
-\renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
+%\renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
 \makeglossaries
 \input{acronymes}
 
@@ -86,7 +86,7 @@
 \newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}} % À faire
 
 % Pour l'interligne
-\usepackage{setspace} 
+\usepackage{setspace}
 
 \graphicspath{{images/}} % Définir un dossier par défaut pour les images
 %\usepackage{float}
@@ -123,42 +123,39 @@
 %\DeclareFieldFormat{url}{\space\url{#1}}
 %\DeclareFieldFormat{urldate}{\addcomma\space\bibstring{urlseen}\space#1}
 %\setcounter{biburlnumpenalty}{100} % Permet une brisure dans les DOI
-\DeclareSourcemap{
-  \maps[datatype=bibtex]{
-    \map{
+\DeclareSourcemap{%
+  \maps[datatype=bibtex]{%
+    \map{%
       \pertype{article}
        \step[fieldset=issn, null]
        \step[fieldset=url, null]
     }
-    \map{
+    \map{%
       \pertype{collection}
        \step[fieldset=url, null]
     }
-    \map{
-      \pertype{book}
+    \map{\pertype{book}
        \step[fieldset=url, null]
        \step[fieldset=doi, null]
     }
-    \map{
-      \pertype{online}
+    \map{\pertype{online}
 %       \step[fieldset=url, null]
        \step[fieldset=doi, null]
     }
-    \map{
+    \map{%
       \step[fieldset=language, null]
     }
   }
 }
-\DefineBibliographyStrings{french}{
+\DefineBibliographyStrings{french}{%
   urlseen = {visité le},
   in = {},
-  mathesis = {Mém. de maît.}
+  mathesis = {Mém.\ de maît.}
 }
 %\defbibfilter{ressources}{ % Créer une catégorie bibliographique pour "outils" (permet d'exclure)
   %type=manual or
   %type=online
 %}
-
 
   %% Déclarations de la page titre. Remplacer les éléments entre < >.
   %% Supprimer les caractères < >. Couper un long titre ou un long
@@ -174,7 +171,6 @@
   \annee{2016}
 
 \begin{document}
-
 \frontmatter                    % pages liminaires
 \pagetitre                      % production de la page titre
 \include{resume}                % résumé français
@@ -203,7 +199,6 @@
 \include{chapitres/chapitre4/chapitre4}
 % \include{chapitres/chapitre5/chapitre5}
 \include{conclusion}
-
 
 %\bibliography{}                 % production de la bibliographie
 %\printbibliography[nottype=manual,nottype=online]
