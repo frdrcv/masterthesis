@@ -1,27 +1,30 @@
-%!TEX program = xelatex
+\documentclass[draft,MScGeogr,nobabel,nonatbib,12pt]{ulthese}
+% $pdflatex = "xelatex %O %S";    % à la place de $pdf_mode = 5; dans le fichier latexmkrc
+%% Encodage utilisé pour les caractères accentués dans les fichiers
+%% source du document. Les gabarits sont encodés en UTF-8. Inutile avec
+%% XeLaTeX, qui gère Unicode nativement.
+\ifxetex\else \usepackage[utf8]{inputenc} \fi
 
-\documentclass[MScGeogr,nobabel,nonatbib,12pt]{ulthese}
-  %% Encodage utilisé pour les caractères accentués dans les fichiers
-  %% source du document. Les gabarits sont encodés en UTF-8. Inutile avec
-  %% XeLaTeX, qui gère Unicode nativement.
-  \ifxetex\else \usepackage[utf8]{inputenc} \fi
-
-\usepackage{xunicode} % Pour l'encodage UTF-8
+%\usepackage{xunicode} % Pour l'encodage UTF-8
 \usepackage{polyglossia} % Équivalent de Babel
-\usepackage[autostyle]{csquotes}
 \setdefaultlanguage{french} % Set default language for the Polyglossia package
 \setotherlanguage{english}
-%\usepackage{natbib}
-% Start of 'ignore natbib' hack
-%\let\bibhang\relax
-%\let\citename\relax
-%\let\bibfont\relax
-%\let\citeauthor\relax
-%\let\Citeauthor\relax
-%\let\citeyear\relax
-%\expandafter\let\csname ver@natbib.sty\endcsname\relax
-% End of 'ignore natbib' hack
+\usepackage[autostyle=true]{csquotes}
+% Corrige un bug de csquotes enlevant les espaces entre les guillemets, entre autres
+
+\makeatletter
+\appto\french@punctuation{%
+  \XeTeXinterchartoks \french@punctguillstart 255 = {\nobreakspace\xpg@nospace}% "« " -> "«~"
+  \XeTeXinterchartoks 255 \french@punctguillend = {\xpg@unskip\nobreakspace}% " »" -> "~»"
+  \XeTeXinterchartoks \french@punctguillstart 4095 = {\nobreakspace\xpg@nospace}% "« " -> "«~"
+  \XeTeXinterchartoks 4095 \french@punctguillend = {\xpg@unskip\nobreakspace}% " »" -> "~»"
+  \XeTeXinterchartoks 4095 \french@punctthin = {\xpg@unskip\nobreak\thinspace}%
+  \XeTeXinterchartoks 4095 \french@punctthick = {\xpg@unskip\nobreakspace}%
+}
+\makeatother
+
 \usepackage[style=authoryear,sortcites,backend=biber,maxbibnames=99,natbib=true]{biblatex}
+\emergencystretch=1em %Règle plusieurs problèmes de over/underflow
 
 % Siècles
 \def\siecle#1{\textsc{\romannumeral #1}\textsuperscript{e}~siècle}
@@ -34,9 +37,10 @@
 \usepackage{silence}
 \WarningFilter{glossaries}{Overriding \printglossary}
 \WarningFilter{glossaries}{overriding `theglossary'}
-\usepackage[acronym,xindy,sort=def,toc,smallcaps,nomain,nonumberlist]{glossaries}
+\usepackage[acronym,xindy,sort=standard,toc,smallcaps,nomain,nonumberlist]{glossaries}
 \usepackage{enumitem}
 \usepackage{xspace}
+\usepackage[textsize=tiny,french]{todonotes}
 %\renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
 \makeglossaries
 \input{acronymes}
@@ -50,6 +54,7 @@
 \newcommand\astteq{\gls{astteq}\xspace}
 \newcommand\cadqas{\gls{cadqas}\xspace}
 \newcommand\ccglm{\gls{ccglm}\xspace}
+%\newcommand\dj{\gls{dj}\xspace}
 \newcommand\ggul{\gls{ggul}\xspace}
 \newcommand\gps{\gls{gps}\xspace}
 \newcommand\grip{\gls{grip}\xspace}
@@ -75,51 +80,84 @@
 \newcommand\uqar{\gls{uqar}\xspace}
 \newcommand\fugues{\emph{Fugues}\xspace}
 \newcommand\sortie{\emph{Sortie}\xspace}
+% Ajout manuel des acronymes pour les arrondissements montréalais
+\glsadd{om}
+\glsadd{ls}
+\glsadd{mr}
+\glsadd{vm}
+\glsadd{pm}
+\glsadd{hs}
+\glsadd{so}
+\glsadd{rp}
+\glsadd{lc}
+\glsadd{dv}
+\glsadd{mn}
+\glsadd{is}
+\glsadd{kl}
+\glsadd{do}
+\glsadd{sv}
+\glsadd{ac}
+\glsadd{cl}
+\glsadd{ln}
+\glsadd{mo}
+\glsadd{pc}
+\glsadd{id}
+\glsadd{mh}
+\glsadd{cn}
+\glsadd{ro}
+\glsadd{lr}
+\glsadd{bf}
+\glsadd{vs}
+\glsadd{wm}
+\glsadd{me}
+\glsadd{aj}
+\glsadd{pr}
+\glsadd{bv}
+\glsadd{vd}
+\glsadd{bu}
+
+
 \renewcommand{\arraystretch}{1.5}
 
 % Source pour les figures
 \newcommand{\source}[1]{\caption*{\hfill Source: {#1}} }
 
 % Annotations
-\newcommand{\note}[1]{\color{red}(#1!)\color{black}} % Note importante, en rouge
-\newcommand{\missref}{\note{[REF]}} % Besoin d'une référence
-\newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}} % À faire
+%\newcommand{\note}[1]{\color{red}(#1!)\color{black}} % Note importante, en rouge
+\newcommand{\missref}{\todo[color=red!40]{Référence manquante}}
+%\newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}} % À faire
 
-% Pour l'interligne
 \usepackage{setspace}
 
 \graphicspath{{images/}} % Définir un dossier par défaut pour les images
-%\usepackage{float}
-%\usepackage{subfig}
 \usepackage{subcaption} % Plus de legendes possibles
-%\usepackage{caption}
 \usepackage{wasysym} % Cases à cocher
 \usepackage{longtable} % Tableaux longs
 
-  %% Utilisation d'une autre police de caractères pour le document.
-  \setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
-  %\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
-  %\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
-  %\setmathfont{TeX Gyre Termes Math}  % mathématiques en Termes (Times)
+%% Utilisation d'une autre police de caractères pour le document.
+%\setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
+%\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
+\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
+%\setmathfont{TeX Gyre Termes Math}  % mathématiques en Termes (Times)
 
-  %% Gestion des hyperliens dans le document. S'assurer que hyperref
-  %% est le dernier paquetage chargé.
-  \usepackage{hyperref}
-  \hypersetup{colorlinks,allcolors=ULlinkcolor}
+%% Gestion des hyperliens dans le document. S'assurer que hyperref
+%% est le dernier paquetage chargé.
+\usepackage{hyperref}
+\hypersetup{colorlinks,allcolors=ULlinkcolor}
 
-  %% Options de mise en forme du mode français de babel. Consulter la
-  %% documentation du paquetage babel pour les options disponibles.
-  %% Désactiver (effacer ou mettre en commentaire) si l'option
-  %% 'nobabel' est spécifiée au chargement de la classe.
-  %\frenchbsetup{%
-  %  CompactItemize=false,         % ne pas compacter les listes
-  %  ThinSpaceInFrenchNumbers=true % espace fine dans les nombres
-  %}
+%% Options de mise en forme du mode français de babel. Consulter la
+%% documentation du paquetage babel pour les options disponibles.
+%% Désactiver (effacer ou mettre en commentaire) si l'option
+%% 'nobabel' est spécifiée au chargement de la classe.
+%\frenchbsetup{%
+%  CompactItemize=false,         % ne pas compacter les listes
+%  ThinSpaceInFrenchNumbers=true % espace fine dans les nombres
+%}
 
-  %% Style de la bibliographie.
-  %\bibliographystyle{}
+%% Style de la bibliographie.
+%\bibliographystyle{}
 \setcounter{biburlnumpenalty}{100}
-\addbibresource{~/Dropbox/bibliographie/literature_repository/library.bib} % Name of the file (without the .bib extension) to use as source for bibliography references
+\addbibresource{~/Archives/nrfrd/Dropbox/bibliographie/literature_repository/library.bib} % Name of the file (without the .bib extension) to use as source for bibliography references
 %\DeclareFieldFormat{url}{\space\url{#1}}
 %\DeclareFieldFormat{urldate}{\addcomma\space\bibstring{urlseen}\space#1}
 %\setcounter{biburlnumpenalty}{100} % Permet une brisure dans les DOI
@@ -127,20 +165,20 @@
   \maps[datatype=bibtex]{%
     \map{%
       \pertype{article}
-       \step[fieldset=issn, null]
-       \step[fieldset=url, null]
+      \step[fieldset=issn, null]
+      \step[fieldset=url, null]
     }
     \map{%
       \pertype{collection}
-       \step[fieldset=url, null]
+      \step[fieldset=url, null]
     }
     \map{\pertype{book}
-       \step[fieldset=url, null]
-       \step[fieldset=doi, null]
+      \step[fieldset=url, null]
+      \step[fieldset=doi, null]
     }
     \map{\pertype{online}
-%       \step[fieldset=url, null]
-       \step[fieldset=doi, null]
+      %       \step[fieldset=url, null]
+      \step[fieldset=doi, null]
     }
     \map{%
       \step[fieldset=language, null]
@@ -153,22 +191,15 @@
   mathesis = {Mém.\ de maît.}
 }
 %\defbibfilter{ressources}{ % Créer une catégorie bibliographique pour "outils" (permet d'exclure)
-  %type=manual or
-  %type=online
+%type=manual or
+%type=online
 %}
 
-  %% Déclarations de la page titre. Remplacer les éléments entre < >.
-  %% Supprimer les caractères < >. Couper un long titre ou un long
-  %% sous-titre manuellement avec \\.
-  \titre{Au-delà du territoire}
-  % \titre{Ceci est un exemple de long titre \\
-  %   avec saut de ligne manuel}
-  \soustitre{Espaces et géosymboles de la diversité sexuelle}
-  % \soustitre{Ceci est un exemple de long sous-titre \\
-  %   avec saut de ligne manuel}
-  \auteur{Frédéric Vachon}
-  \programme{Maîtrise en Sciences géographiques}
-  \annee{2016}
+\titre{Au-delà du territoire}
+\soustitre{Espaces et géosymboles de la diversité sexuelle}
+\auteur{Frédéric Vachon}
+\programme{Maîtrise en Sciences géographiques}
+\annee{2017}
 
 \begin{document}
 \frontmatter                    % pages liminaires
@@ -183,8 +214,9 @@
 \listoffigures                  % production de la liste des figures
 \cleardoublepage
 \printglossary[type=\acronymtype,title=Liste des acronymes,toctitle=Liste des acronymes] % production de la liste des acronymes
+%\glsaddall
 \cleardoublepage
-\dedicace{Dédicace si désiré}
+\dedicace{À Marjo, Serge, et leur amour inconditionnel.}
 \cleardoublepage
 \epigraphe{Texte de l'épigraphe}{Source ou auteur}
 \cleardoublepage
@@ -197,12 +229,7 @@
 \include{chapitres/chapitre2/chapitre2}
 \include{chapitres/chapitre3/chapitre3}
 \include{chapitres/chapitre4/chapitre4}
-% \include{chapitres/chapitre5/chapitre5}
 \include{conclusion}
-
-%\bibliography{}                 % production de la bibliographie
-%\printbibliography[nottype=manual,nottype=online]
-%\printbibliography[type=manual,type=online,sorting=nyt]
 \printbibliography%[sorting=nyt]
 \appendix                       % annexes le cas échéant
 \include{annexe}                % annexe A
