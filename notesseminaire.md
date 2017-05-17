@@ -1,0 +1,14 @@
+# Correctifs à apporter
+- Creuser lus en profondeur Divers/Cité -> Traiter
+- Traiter des changements des lieux de Pervers/Cité
+- Théoriser plus
+- Idée de cohésion des géosymboles
+- Souligner l'idée d'échange, du passage de l'information
+- S'assurer que le concept de géosymbole (qu'il soit bien utilisé?)
+- M'assurer que je nomme géosymbole -> système de communication
+- Processus d'assimilation -> enjeux de visibilité (et ce qui ne l'est pas)
+- Aspect historique
+- Culture vs réseau sociaul
+  - Quand devient hégémonique -> milieu bâti ou plutôt se diversifie
+- Mémoire et reenactment
+- Performativité cadrée par la mémoire, autre vie
