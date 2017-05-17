@@ -1,5 +1,10 @@
-\documentclass[draft,MScGeogr,nobabel,nonatbib,12pt]{ulthese}
-% $pdflatex = "xelatex %O %S";    % à la place de $pdf_mode = 5; dans le fichier latexmkrc
+\documentclass[
+  draft,
+  MScGeogr,
+  nobabel,
+  nonatbib,
+  12pt
+]{ulthese}
 %% Encodage utilisé pour les caractères accentués dans les fichiers
 %% source du document. Les gabarits sont encodés en UTF-8. Inutile avec
 %% XeLaTeX, qui gère Unicode nativement.
@@ -9,9 +14,11 @@
 \usepackage{polyglossia} % Équivalent de Babel
 \setdefaultlanguage{french} % Set default language for the Polyglossia package
 \setotherlanguage{english}
-\usepackage[autostyle=true]{csquotes}
-% Corrige un bug de csquotes enlevant les espaces entre les guillemets, entre autres
+\usepackage[
+  autostyle=true
+]{csquotes}
 
+% Corrige un bug de csquotes enlevant les espaces entre les guillemets, entre autres
 \makeatletter
 \appto\french@punctuation{%
   \XeTeXinterchartoks \french@punctguillstart 255 = {\nobreakspace\xpg@nospace}% "« " -> "«~"
@@ -23,7 +30,14 @@
 }
 \makeatother
 
-\usepackage[style=authoryear,sortcites,backend=biber,maxbibnames=99,natbib=true]{biblatex}
+\usepackage[
+  style=authoryear,
+  sortcites,
+  backend=biber,
+  maxbibnames=99,
+  natbib=true
+]{biblatex}
+
 \emergencystretch=1em %Règle plusieurs problèmes de over/underflow
 
 % Siècles
@@ -33,17 +47,25 @@
 \def\code#1{\texttt{#1}}
 
 % Gestion des acronymes
-%\usepackage{acronym}
 \usepackage{silence}
 \WarningFilter{glossaries}{Overriding \printglossary}
 \WarningFilter{glossaries}{overriding `theglossary'}
-\usepackage[acronym,xindy,sort=standard,toc,smallcaps,nomain,nonumberlist]{glossaries}
-\usepackage{enumitem}
-\usepackage{xspace}
-\usepackage[textsize=tiny,french]{todonotes}
+\usepackage[
+  acronym,
+  xindy,
+  sort=standard,
+  toc,
+  smallcaps,
+  nomain,
+  nonumberlist
+]{glossaries}
 %\renewcommand{\theglossary}{\begin{description}[font=\normalfont]}
 \makeglossaries
 \input{acronymes}
+
+\usepackage{enumitem}
+
+\usepackage{xspace}
 
 % Macros (surtout des acronymes)
 \newcommand\agq{\gls{agq}\xspace}
@@ -116,7 +138,6 @@
 \glsadd{vd}
 \glsadd{bu}
 
-
 \renewcommand{\arraystretch}{1.5}
 
 % Source pour les figures
@@ -126,19 +147,26 @@
 %\newcommand{\note}[1]{\color{red}(#1!)\color{black}} % Note importante, en rouge
 \newcommand{\missref}{\todo[color=red!40]{Référence manquante}}
 %\newcommand{\todo}[1]{\textcolor{blue}{[Todo: #1]}} % À faire
+\usepackage[
+  textsize=tiny,
+  french
+]{todonotes}
 
 \usepackage{setspace}
 
 \graphicspath{{images/}} % Définir un dossier par défaut pour les images
+
 \usepackage{subcaption} % Plus de legendes possibles
+
 \usepackage{wasysym} % Cases à cocher
+
 \usepackage{longtable} % Tableaux longs
 
 %% Utilisation d'une autre police de caractères pour le document.
-%\setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
+\setmainfont{TeX Gyre Pagella}      % texte en Pagella (Palatino)
 %\setmathfont{TeX Gyre Pagella Math} % mathématiques en Pagella (Palatino)
 %\setmainfont{TeX Gyre Termes}       % texte en Termes (Times)
-\setmainfont{texgyretermes-regular.otf}       % texte en Termes (Times)
+%\setmainfont{texgyrepagella-regular.otf}       % texte en Termes (Times)
 %\setmathfont{TeX Gyre Termes Math}  % mathématiques en Termes (Times)
 
 %% Gestion des hyperliens dans le document. S'assurer que hyperref
@@ -191,10 +219,6 @@
   in = {},
   mathesis = {Mém.\ de maît.}
 }
-%\defbibfilter{ressources}{ % Créer une catégorie bibliographique pour "outils" (permet d'exclure)
-%type=manual or
-%type=online
-%}
 
 \titre{Au-delà du territoire}
 \soustitre{Espaces et géosymboles de la diversité sexuelle}
@@ -214,8 +238,10 @@
 \cleardoublepage
 \listoffigures                  % production de la liste des figures
 \cleardoublepage
+\begin{SingleSpace}
 \printglossary[type=\acronymtype,title=Liste des acronymes,toctitle=Liste des acronymes] % production de la liste des acronymes
 %\glsaddall
+\end{SingleSpace}
 \cleardoublepage
 \dedicace{À Marjo, Serge, et leur amour inconditionnel.}
 \cleardoublepage
