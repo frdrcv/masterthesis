@@ -1,3 +1,5 @@
+biblatex_check*
+.directory
 *.aux
 *.glo
 *.idx
@@ -8,6 +10,7 @@
 *.acr
 *.alg
 *.bbl
+*.bblbak
 *.blg
 *.dvi
 *.glg
@@ -34,6 +37,7 @@
 *.rip
 *.subl*
 *.bcf
+*.bcfbak
 *.xdy
 *.kile*
 *.run*
@@ -43,3 +47,6 @@
 make
 *.synctex.gz
 *.*.swp
+.latermain
+*.xvd
+*.sw*
