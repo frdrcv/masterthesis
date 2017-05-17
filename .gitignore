@@ -1,5 +1,6 @@
 biblatex_check*
 .directory
+images/
 *.aux
 *.glo
 *.idx
@@ -49,4 +50,5 @@ make
 *.*.swp
 .latermain
 *.xvd
+*.xdv
 *.sw*
